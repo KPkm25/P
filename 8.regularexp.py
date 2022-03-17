@@ -1,0 +1,56 @@
+import re
+
+def check_uc_lc_pattern(user_input):
+    pattern=re.compile("[A-Z]+[a-z]+$")
+
+    if pattern.search(user_input):
+        print("String pattern match success\n")
+    else:
+        print("String fails the pattern\n")
+
+def count_pattern(user_input):
+    count=0
+    pattern=re.compile("10+1")
+    substr=pattern.search(user_input)
+
+    while substr != None:
+        count=count+1
+
+        user_input=user_input[(substr.end()-1):]
+        substr=pattern.search(user_input)
+    print(f"The number of times the pattern appears in the string is {count}\n")
+
+def z_followed_by_o(user_input):
+    pattern=re.compile("zo+\w*")
+
+    match_object=pattern.findall(user_input)
+
+    if len(match_object) !=0:
+        print("String pattern match success\n")
+    else:
+        print("No match\n")
+def menu():
+    while True:
+        print("1-->Identify a word with a sequence of one upper case letter followed by lower case letters")
+        print("2-->Find all the patterns of '1(0+)1' in a given string")
+        print("3-->Match a word containing 'z' followed by one or more o's")
+        print("4-->Exit")
+        choice=int(input("Enter a number to perform any of the operation:"))
+        print("\n")
+        if choice==1:
+            user_input=input("Enter a string with a sequence of Upper and Lower case letters: ")
+            print("\n")
+            check_uc_lc_pattern(user_input)
+        elif choice==2:
+            user_input=input("Enter a string in the form of 1(0+)1 pattern: ")
+            print("\n")
+            count_pattern(user_input)
+        elif choice==3:
+            user_input=input("Enter a string: ")
+            print("\n")
+            z_followed_by_o(user_input)
+        else:
+            break
+if __name__=="__main__":
+    menu()
+
